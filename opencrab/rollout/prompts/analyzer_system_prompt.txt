@@ -1,0 +1,2 @@
+Respond with ONLY valid JSON in this exact format, no other text:
+{"corrected_messages": [{"role": "user|assistant|system", "content": "..."}], "mistake_type": "factual|self_correction|tool_construction|domain_knowledge|reasoning_error|null", "summary": "brief summary of what was corrected"}

@@ -1,0 +1,81 @@
+[project]
+name = "opencrab"
+version = "0.1.0"
+description = "Self-distilling learning framework for AI chatbots and agents"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [
+    {name = "OpenCrab Team"}
+]
+keywords = ["ai", "chatbot", "self-distillation", "fine-tuning", "learning"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+dependencies = [
+    "fastapi>=0.109.0",
+    "httpx>=0.27.0",
+    "pydantic>=2.5.0",
+    "python-dotenv>=1.0.0",
+    "sqlalchemy[asyncio]>=2.0.25",
+    "aiosqlite>=0.19.0",
+    "structlog>=24.1.0",
+    "typer>=0.9.0",
+    "rich>=13.7.0",
+    "aiofiles>=23.2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-cov>=4.1.0",
+    "ruff>=0.2.0",
+    "mypy>=1.8.0",
+    "pre-commit>=3.6.0",
+]
+serving = [
+    "sglang>=0.4.0",
+    "vllm>=0.3.0",
+]
+training = [
+    "datasets>=2.18.0",
+    "transformers>=4.38.0",
+    "axolotl>=0.4.0",
+]
+anthropic = [
+    "anthropic>=0.18.0",
+]
+openai = [
+    "openai>=1.12.0",
+]
+
+[project.scripts]
+opencrab = "opencrab.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["opencrab"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
